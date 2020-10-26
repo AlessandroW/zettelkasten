@@ -1,0 +1,94 @@
+html,
+body {
+  display: flex;
+  flex-flow: column;
+  padding: 0;
+  margin: 0;
+  background: #fafafc;
+  line-height: 1.2;
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-size: 1.7rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+h4 {
+  color: rgb(0, 0, 0);
+  font-size: 1.1em;
+}
+
+h5 {
+  color: rgb(0, 0, 0);
+}
+
+p {
+  color: rgb(102, 102, 102);
+}
+
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dadada;
+    padding: 0px 20px 0px 20px ;
+    width: 100%;
+    height: 50px;
+    position: fixed;
+}
+
+.page {
+    margin-top: 50px;
+    white-space: normal;
+    background: #ffffff;
+    padding: 10px 20px;
+    display: inline-block;
+    width: 600px;
+    max-width: 100%;
+    height: 100% !important;
+    max-height: 100%;
+    overflow-y: auto;
+    vertical-align: top;
+    box-sizing: border-box;
+border-left: 1px solid rgba(0,0,0,0.05);
+}
+
+
+.backlinks-container {
+    background-color: #fafafa; 
+    padding: 8px;
+    border-radius: 16px;
+    
+}
+
+.backlink {
+    width: 250px;
+    padding: 8px;
+}
+
+.backlink-hover:hover {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+}
+.backlink-hover {
+    text-decoration: none;
+    text-decoration-color: none;
+}
+
+.backlinks-heading {
+    font-size: 17px;
+    color: #888;
+}
+
+.backlinks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
