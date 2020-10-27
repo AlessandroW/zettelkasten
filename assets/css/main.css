@@ -84,7 +84,7 @@ p {
 }
 
 /* Display close button only if there are multiple zettels. */
-.zettel:only-child .close {
+.zettel[data-original-zettel='true'] .close {
   display: none;
 }
 

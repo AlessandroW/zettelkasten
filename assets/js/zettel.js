@@ -56,6 +56,7 @@ function removeZettel(event){
  */
 (function fetchLinks() {
     const zettel = document.querySelector(".zettel");
+    zettel.dataset.originalZettel = "true";
     addLinks(zettel);
 })();
 
