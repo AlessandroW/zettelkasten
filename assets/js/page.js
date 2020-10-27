@@ -6,18 +6,15 @@ function createBacklinkPreview(backlink) {
     fetch(backlink.href)
         .then(response => response.text())
         .then(htmlString => {
-            const backlinkDocument = document.createElement("temp");
+            const backlinkDocument = document.createElement("div");
             backlinkDocument.innerHTML = htmlString;
             const pageBodies = backlinkDocument.getElementsByClassName("page-body");
             if (pageBodies.length === 1) {
                 const pageBody = pageBodies[0];
-                pageBody.classList.add("backlinkPreview");
-                tippy(backlink, {
-                    content: pageBody,
-                    allowHTML: true,
-                    theme: "light",
-                    placement: "right",
-                });
+                const backlinkPreview = document.createElement("div");
+                backlinkPreview.innerHTML = pageBody.innerHTML;
+                backlinkPreview.classList.add("backlink-tooltip");
+                backlink.parentNode.insertBefore(backlinkPreview, backlink.siblingNode);
             }
         })
         .catch(error => console.error(error));
@@ -30,7 +27,9 @@ function createBacklinkPreview(backlink) {
  * a preview of the article, similar to Wikipedia's preview.
  */
 (function createBacklinkPreviews() {
-    const backlinks = document.getElementsByClassName('backlink-hover');
+    const page = document.querySelector(".page");
+
+    const backlinks = document.getElementsByClassName('backlink');
     Object.values(backlinks).forEach((backlink) => {
         createBacklinkPreview(backlink);
     });

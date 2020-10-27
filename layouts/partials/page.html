@@ -1,40 +1,41 @@
-<div class="page" data-uuid="{{ .File.UniqueID }}" data-level="1">
-    <div class="page-body">
-        <h1>{{ .Title }}</h1>
+<div class="page-grid">
+    <div class="page" data-uuid="{{ .File.UniqueID }}" data-row="1" data-column="1">
+        <div class="page-body">
+            <h1>{{ .Title }}</h1>
 
-        <p>
-            <small>{{ .Date.Format "02.01.2006" }}</small>
-        </p>
+            <p>
+                <small>{{ .Date.Format "02.01.2006" }}</small>
+            </p>
 
-        {{ .Content }}
+            {{ .Content }}
 
-        <!-- Tags -->
-        {{ if isset .Params "tags" }}
-            {{ $baseURL := .Site.BaseURL }}
-            <ul class="tags">
-                {{ range .Params.tags }}
-                <li> <a href="{{ $baseURL }}tags/{{ . | urlize }}/">#{{ . }}</a> </li>
-                {{ end }}
-            </ul>
-        {{ end }}
-    </div>
-
-    <div class="backlinks-container">
-        <h3 class="backlinks-heading">Links to this note</h3>
-        <div class="backlinks">
-        <!-- Define re as this files filename without the .md -->
-        {{ $re := printf "relref \"%s\"" .File.BaseFileName }}
-        {{ range .Site.AllPages }}
-            <!-- findRE list of strings that match regular expression -->
-            {{ if findRE $re .RawContent }}
-                <a  href={{ .RelPermalink }} class="backlink-hover">
-                    <div class="backlink">
-                        <h4> {{ .Title }} </h4>
-                        <p> {{ .Summary }} </p>
-                    </div>
-                </a>
+            <!-- Tags -->
+            {{ if isset .Params "tags" }}
+                {{ $baseURL := .Site.BaseURL }}
+                <ul class="tags">
+                    {{ range .Params.tags }}
+                    <li> <a href="{{ $baseURL }}tags/{{ . | urlize }}/">#{{ . }}</a> </li>
+                    {{ end }}
+                </ul>
             {{ end }}
-        {{ end }}
+        </div>
+
+        <div class="backlinks-container">
+            <h3 class="backlinks-heading">Links to this note</h3>
+            <ul>
+            <!-- Define re as this files filename without the .md -->
+            {{ $re := printf "relref \"%s\"" .File.BaseFileName }}
+            {{ range .Site.AllPages }}
+                <!-- findRE list of strings that match regular expression -->
+                {{ if findRE $re .RawContent }}
+                    <li class="backlink-container">
+                        <a  href={{ .RelPermalink }} class="backlink">
+                            {{ .Title }}
+                        </a>
+                    </li>
+                {{ end }}
+            {{ end }}
+            </ul>
         </div>
     </div>
 </div>

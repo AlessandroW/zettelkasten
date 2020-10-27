@@ -69,32 +69,49 @@ p {
 }
 
 .backlink {
-    width: 250px;
-    padding: 8px;
-}
-
-.backlink-hover:hover {
-    background-color: #f2f2f2;
-    border-radius: 8px;
-}
-.backlink-hover {
-    text-decoration: none;
-    text-decoration-color: none;
+    padding-left: 8px;
+    /* Text only one line and cut off with ... */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inherit;
 }
 
 .backlinks-heading {
     font-size: 17px;
     color: #888;
+    border-bottom: 1px dotted black;
+    margin: 0;
+    padding: 8px 8px 8px 0;
 }
 
-.backlinks {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.backlink-container {
+  /* Relative position required as anchor for tool-tip. */
+    position: relative;
 }
 
-.backlinkPreview {
-  overflow: hidden;
+.backlink-container:hover .backlink-tooltip {
+  /* Make the tool-tip visible when hovering over the list item. */
+  visibility: visible;
+}
+
+
+.backlink-tooltip {
+  padding: 10px;
+  max-height: 300px;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+
+  bottom: 110%;
+  left: 10%;
+  position: absolute;
+
+  z-index: 1;
+  visibility: hidden;
+}
+
 
 .footer {
   min-height: 50px;
