@@ -10,16 +10,16 @@ function addLink(originalZettel, link) {
                 // Retrieve .
                 const linkDocument = document.createElement("div");
                 linkDocument.innerHTML = htmlString;
-                const zettel = linkDocument.getElementsByClassName("zettel")[0];
-                createLinkPreview(link, zettel.getElementsByClassName("zettel-summary")[0])
-                link.addEventListener("click", (event) => {
-                    event.preventDefault();
-                    insertZettelNext(originalZettel, zettel);
-                });
-
-
-            })
-            .catch(error => console.error(error));
+                const zettels = linkDocument.getElementsByClassName("zettel");
+                if (zettels.length === 1){
+                    const zettel = zettels[0]
+                    createLinkPreview(link, zettel.getElementsByClassName("zettel-summary")[0])
+                    link.addEventListener("click", (event) => {
+                        event.preventDefault();
+                        insertZettelNext(originalZettel, zettel, link);
+                    });
+                }
+            }).catch(error => console.error(error));
     }
 };
 
