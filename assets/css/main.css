@@ -42,30 +42,69 @@ p {
     width: 100%;
     height: 50px;
     position: fixed;
+    z-index: 100;
 }
 
-.page {
+.zettel-grid {
     margin-top: 50px;
+    display: flex;
+    -webkit-flex-direction: row; /* Safari */
+    flex-direction:  row;
+    flex-wrap:  wrap;
+    
+}
+
+
+.zettel {
+    /* To make space for the header element. */
     white-space: normal;
     background: #ffffff;
-    padding: 10px 20px;
-    display: inline-block;
-    width: 600px;
-    max-width: 100%;
-    height: 100% !important;
-    max-height: 100%;
-    overflow-y: auto;
-    vertical-align: top;
-    box-sizing: border-box;
-    border-left: 1px solid rgba(0,0,0,0.05);
+    padding: 10px;
+
+    overflow: auto;
+    margin: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    flex: 0 0 calc(33.33% - 30px);
+    justify-content: center;
+
+    display: flex;
+    -webkit-flex-direction: column; /* Safari */
+    flex-direction:  column;
+
+    position: relative;
+}
+
+.close {
+  text-align: center;
+  color: #888;
+  position: absolute;
+  right: 1%;
+  top: 1%;
+  cursor: pointer;
+}
+
+/* Display close button only if there are multiple zettels. */
+.zettel:only-child .close {
+  display: none;
 }
 
 
-.backlinks-container {
-    background-color: #fafafa; 
+/* HACK: Only used in the previews.*/
+/* I added this so that I can access the hugo summary and I only need to fetch the page once.*/
+.zettel .zettel-summary {
+    display: none;
+}
+
+.zettel .zettel-body {
+  flex: 1 0 300px;
+  justify-content: start;
+}
+
+.zettel .backlinks-container {
+    background: #fafafa; 
     padding: 8px;
-    border-radius: 16px;
-    
+    /* Take all the space left by zettel-body */
+    flex: 0 0;
 }
 
 .backlink {
@@ -98,23 +137,21 @@ p {
 
 .backlink-tooltip {
   padding: 10px;
-  max-height: 300px;
+  max-height: 100px;
+  max-width: 300px;
   background-color: #ffffff;
   overflow-x: hidden;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 
-  bottom: 110%;
+  bottom: 100%;
   left: 10%;
   position: absolute;
 
-  z-index: 1;
+  z-index: 0;
   visibility: hidden;
 }
 
-
-.footer {
-  min-height: 50px;
-  border-top: 1px solid #dadada;
-  background-color: #fafafa;
+.backlink-tooltip p {
+  margin-top: 0;
 }
+

@@ -1,11 +1,16 @@
-<div class="page-grid">
-    <div class="page" data-uuid="{{ .File.UniqueID }}" data-row="1" data-column="1">
-        <div class="page-body">
+<div class="zettel-grid">
+    <div class="zettel" data-uuid="{{ .File.UniqueID }}">
+        <div class="close" onclick="removeZettel(event)">✕</div>
+        <div class="zettel-body">
             <h1>{{ .Title }}</h1>
 
             <p>
                 <small>{{ .Date.Format "02.01.2006" }}</small>
             </p>
+
+            <div class="zettel-summary">
+                {{ .Content }}
+            </div>
 
             {{ .Content }}
 
@@ -41,6 +46,6 @@
 </div>
 
 
-<!-- Add javascript to page. -->
-{{ $pagejs := resources.Get "js/page.js" }}
-<script src="{{$pagejs.Permalink}}" type="text/javascript"></script>
+<!-- Add javascript to zettel. -->
+{{ $zetteljs := resources.Get "js/zettel.js" }}
+<script src="{{$zetteljs.Permalink}}" type="text/javascript"></script>
