@@ -95,4 +95,9 @@ p {
 
 .backlinkPreview {
   overflow: hidden;
+
+.footer {
+  min-height: 50px;
+  border-top: 1px solid #dadada;
+  background-color: #fafafa;
 }
