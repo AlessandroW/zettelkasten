@@ -25,6 +25,9 @@ function createBacklinkPreview(backlink) {
 
 /**
  * Inititializes all tippy backlink previews.
+ *
+ * The idea is that when you hover over a backlink you see
+ * a preview of the article, similar to Wikipedia's preview.
  */
 (function createBacklinkPreviews() {
     const backlinks = document.getElementsByClassName('backlink-hover');
