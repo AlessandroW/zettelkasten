@@ -112,12 +112,24 @@ p {
   width: 100%;
   box-sizing: border-box;
 }
-.zettel-grid {
-    margin-top: 50px;
+
+.zettel-overview-grid {
+    margin-top: 60px;
     display: flex;
     -webkit-flex-direction: row; /* Safari */
     flex-direction:  row;
     flex-wrap:  wrap;
+    justify-content: space-around;
+}   
+
+
+.zettel-grid {
+    margin-top: 60px;
+    display: flex;
+    -webkit-flex-direction: row; /* Safari */
+    flex-direction:  row;
+    flex-wrap:  wrap;
+    justify-content: space-between;
     
 }
 
@@ -129,16 +141,26 @@ p {
     padding: 20px;
 
     overflow: auto;
-    margin: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    flex: 0 0 calc(33.33% - 50px);
     justify-content: center;
+    margin-bottom: 10px;
 
     display: flex;
     -webkit-flex-direction: column; /* Safari */
     flex-direction:  column;
 
+    box-sizing: border-box;
     position: relative;
+}
+
+.zettel-grid > .zettel {
+    flex: 1 1 auto;
+    margin-left: 10px;
+}
+
+.zettel-overview-grid > .zettel {
+    max-width: 33%;
+    flex: 1 1 auto;
 }
 
 .index-zettel {
