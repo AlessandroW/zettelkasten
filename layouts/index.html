@@ -1,0 +1,8 @@
+{{ define "main" }}
+    <div style="margin-top: 55px;"/>
+    <div class="index-zettel">
+    <!-- Note that the content for index.html, as a sort of list page, will pull from content/_index.md -->
+    <h1>{{ .Title }}</h1>
+    {{.Content}}
+    </div>
+{{ end }}
