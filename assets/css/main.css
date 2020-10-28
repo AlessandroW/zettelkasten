@@ -45,6 +45,14 @@ p {
     z-index: 100;
 }
 
+.header > p {
+  cursor: pointer;
+}
+
+.header > p:hover {
+  color: black;
+}
+
 .zettel-grid {
     margin-top: 50px;
     display: flex;
