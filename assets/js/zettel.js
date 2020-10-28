@@ -74,6 +74,35 @@ function removeZettel(event){
     event.target.parentNode.parentNode.remove();
     
 }
+
+/**
+ * Use the org-roam-protocol to open the note in Emacs.
+ *
+ * Important! This requires the correct template.
+ * ```
+ * (setq org-roam-capture-ref-templates
+ *      '(("t" "ref" plain (function org-roam-capture--get-point)
+ *         "%?"
+ *         :file-name "${ref}"
+ *         :unnarrowed t)
+ *        ))
+ * ```
+ */
+function openZettelInEmacs(event){
+    // Zettel filename.
+    let zettelPathname = event.target.parentNode.parentNode.dataset.pathname;
+    // If the mouse is on the "Open In Emacs" description child span.
+    if (!zettelPathname) {
+        zettelPathname = event.target.parentNode.parentNode.parentNode.dataset.pathname;
+    }
+
+    //TODO: How can I make this dependent on the org-roam protocol?
+    const protocolLink = new URL("org-protocol://roam-ref?template=t&ref="
+                                 + encodeURIComponent(zettelPathname.split("/")[2])
+                                 + "&title="
+                                );
+    // Call the org-roam protocol.
+    location.href = protocolLink.href;
 }
 
 

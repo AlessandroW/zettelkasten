@@ -95,6 +95,14 @@ p {
     display: none;
 }
 
+.open-in-emacs > span {
+  display: none;
+}
+
+.open-in-emacs:hover > span {
+  display: inherit;
+}
+
 .zettel .zettel-body {
   flex: 1 0 300px;
   justify-content: start;
