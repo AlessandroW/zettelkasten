@@ -1,6 +1,8 @@
 <div class="zettel-grid">
     <div class="zettel" data-uuid="{{ .File.UniqueID }}">
-        <div class="close" onclick="removeZettel(event)">✕</div>
+        <div class="navigation-buttons">
+            <span class="close" onclick="removeZettel(event)">✕</span>
+        </div>
         <div class="zettel-body">
             <h1>{{ .Title }}</h1>
 
