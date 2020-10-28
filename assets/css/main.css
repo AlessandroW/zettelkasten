@@ -67,12 +67,12 @@ p {
     /* To make space for the header element. */
     white-space: normal;
     background: #ffffff;
-    padding: 10px;
+    padding: 20px;
 
     overflow: auto;
     margin: 5px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    flex: 0 0 calc(33.33% - 30px);
+    flex: 0 0 calc(33.33% - 50px);
     justify-content: center;
 
     display: flex;
