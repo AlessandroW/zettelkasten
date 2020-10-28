@@ -164,7 +164,7 @@ function fetchLinks() {
     });
     
     const zettelGrid = document.querySelector(".zettel-grid");
-    if (zettelGrid && zettelGrid.dataset.zettelView){
+    if (zettelGrid){
         const zettel = document.querySelector(".zettel");
         zettel.dataset.originalZettel = "true";
         zettel.dataset.pathname = location.pathname;
