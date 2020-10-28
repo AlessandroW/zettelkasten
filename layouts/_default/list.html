@@ -8,9 +8,7 @@
                         <small>{{ .Date.Format "02.01.2006" }}</small>
                     </p>
                 {{ .Summary }}
-                <p>
-                    <a class="readmore" href = "{{ .RelPermalink }}" > More...</a>
-                </p>
+                        <a class="readmore" href = "{{ .RelPermalink }}"  title = "{{ .Title }}"> More...</a>
             </div>
         {{end}}
     </div>

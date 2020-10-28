@@ -1,5 +1,10 @@
 <div class="header">
-  <p onclick="location.href = location.origin">
+  <div class="logo" onclick="location.href = location.origin">
     My Zettelkasten
-  </p>
+  </div>
+  <div class="search-bar">
+    <input type="search" placeholder="Search.." id="searchBar" onkeyup="searchForZettel()">
+    <div class="search-results" id="searchResults"></div>
+  </div>
 </div>
+

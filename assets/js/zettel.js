@@ -40,7 +40,7 @@ function insertZettelNext(zettel, adjacentZettel, link){
     const zettels = new URLSearchParams(location.search.slice(1));
     if (!zettels.getAll("z").includes(link.pathname)) {
         zettels.append('z', link.pathname);
-        history.pushState({}, null, `${location.pathname}?${zettels}`);
+        history.pushState(history.state, null, `${location.pathname}?${zettels}`);
         addLinks(adjacentZettel);
         zettel.parentNode.insertBefore(adjacentZettel, zettel.nextSibling); 
         
@@ -62,13 +62,13 @@ function removeZettel(event){
     const index = zettels.indexOf(zettelPathname);
     if (index === 0 && zettels.length === 1){
         const newURL = location.href.replace("?z=" + zettelPathname.replaceAll("/", "%2F"), "")
-        history.pushState({}, null, newURL);
+        history.pushState(history.state, null, newURL);
     } else if (index === 0) {
         const newURL = location.href.replace(zettelPathname.replaceAll("/", "%2F") + "&z=", "")
-        history.pushState({}, null, newURL);
+        history.pushState(history.state, null, newURL);
     } else {
         const newURL = location.href.replace("&z=" + zettelPathname.replaceAll("/", "%2F"), "")
-        history.pushState({}, null, newURL);
+        history.pushState(history.state, null, newURL);
     } 
     
     event.target.parentNode.parentNode.remove();
@@ -106,10 +106,37 @@ function openZettelInEmacs(event){
 }
 
 
+function searchForZettel() {
+    // FIXME Add keyboard support.
+    // Problem: we search for Zettels when the user types,
+    // so we need to filter by key first?
+    const searchInput = document.getElementById("searchBar");
+    const searchResults = document.getElementById("searchResults");
+    searchResults.innerHTML = "";
+    if (!!searchInput.value){
+        const matches = Object.values(history.state.zettels)
+                              .filter(o => o.title.toLowerCase().includes(searchInput.value.trim().toLowerCase()));
+        console.log(matches);
+        matches.forEach(match => {
+            const item = document.createElement("div");
+            item.classList.add("search-result");
+            item.innerHTML = match.title;
+            item.addEventListener("click", (event) => {
+                location.href = match.href;  
+            });
+            searchResults.appendChild(item);
+        })    
+    }
+    
+}
+
 /**
  * Reload the page if the user presses back or forward.
  */
-window.addEventListener('popstate', function(){
+window.addEventListener('popstate', () => {
+    // FIXME You can go back, i.e. remove a Zettel but you cannot leave the Zettel view.
+    // But if you fix that with `history.back()` you
+    // cannot go back a step in creating the grid.
     location.reload();
 })
 
@@ -121,15 +148,33 @@ window.addEventListener('popstate', function(){
  * a preview of the article, similar to Wikipedia's preview.
  */
 function fetchLinks() {
-    const zettel = document.querySelector(".zettel");
-    zettel.dataset.originalZettel = "true";
-    zettel.dataset.pathname = location.pathname;
-    addLinks(zettel);
-    const zettels = new URLSearchParams(location.search.slice(1)).getAll("z");
-    zettels.forEach((adjacentZettel) => {
-        const url = new URL(location.origin + adjacentZettel);
-        addLink(zettel, url)
-    })
+    fetch(location.origin + "/posts/")
+        .then((response) => response.text())
+        .then((htmlString) => {
+            const doc = document.createElement("div");
+            doc.innerHTML = htmlString;
+            const zettels = doc.getElementsByClassName("readmore");
+            const zettelLinks = Object.values(zettels).map(o => {
+                return {
+                    "href": o.href,
+                    "title": o.title
+                };
+            });
+            history.pushState({"zettels": zettelLinks}, null);
+    });
+    
+    const zettelGrid = document.querySelector(".zettel-grid");
+    if (zettelGrid && zettelGrid.dataset.zettelView){
+        const zettel = document.querySelector(".zettel");
+        zettel.dataset.originalZettel = "true";
+        zettel.dataset.pathname = location.pathname;
+        addLinks(zettel);
+        const zettels = new URLSearchParams(location.search.slice(1)).getAll("z");
+        zettels.forEach((adjacentZettel) => {
+            const url = new URL(location.origin + adjacentZettel);
+            addLink(zettel, url)
+        })    
+    }
 }
 
 fetchLinks();

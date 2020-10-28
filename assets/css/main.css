@@ -38,21 +38,80 @@ p {
 .header {
     background-color: #ffffff;
     border-bottom: 1px solid #dadada;
-    padding: 0px 20px 0px 20px ;
     width: 100%;
     height: 50px;
     position: fixed;
     z-index: 100;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.header > p {
+.header > .logo {
+  color: rgb(102, 102, 102);
   cursor: pointer;
+  flex: 0 0 10%;
 }
 
-.header > p:hover {
+.header > .logo:hover {
   color: black;
 }
 
+.header .search-bar {
+  flex: 0 1 20%;
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.search-bar .search-results {
+  position: absolute;
+  width: 100%;
+  max-height: 600px;
+  background-color: #ffffff;
+  border-left: 1px solid #dadada;
+  border-right: 1px solid #dadada;
+  border-bottom: 1px solid #dadada;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.search-results > .search-result {
+  width: 100%;
+  cursor: pointer;
+  padding: 5px;
+  /* Text only one line and cut off with ... */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+.search-results:empty {
+  display: none;
+}
+
+.search-results > .search-result:hover {
+  background-color: #dadada;
+}
+  
+.header input {
+  /* Search Icon  */
+  background-image: url("data:image/svg+xml;utf8, \
+                    <svg xmlns='http://www.w3.org/2000/svg'version='1.1' height='50px' width='120px'>\
+                         <text x='0' y='12' font-size='12'>🔍</text>\
+                    </svg>");
+  background-position: 5px 3px;
+  background-repeat: no-repeat;
+  padding-left: 25px;
+
+  /* Styling */
+  border: 1px solid #dadada;
+  width: 100%;
+  box-sizing: border-box;
+}
 .zettel-grid {
     margin-top: 50px;
     display: flex;
