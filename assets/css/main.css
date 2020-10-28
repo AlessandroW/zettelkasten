@@ -169,7 +169,7 @@ p {
 
 /* HACK: Only used in the previews.*/
 /* I added this so that I can access the hugo summary and I only need to fetch the page once.*/
-.zettel .zettel-summary {
+.zettel .zettel-summary[data-invisible='true'] {
     display: none;
 }
 

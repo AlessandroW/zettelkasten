@@ -7,8 +7,10 @@
                     <p>
                         <small>{{ .Date.Format "02.01.2006" }}</small>
                     </p>
-                {{ .Summary }}
+                    <div class="zettel-summary">
+                        {{ .Summary }}
                         <a class="readmore" href = "{{ .RelPermalink }}"  title = "{{ .Title }}"> More...</a>
+                    </div>
             </div>
         {{end}}
     </div>
