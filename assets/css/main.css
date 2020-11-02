@@ -206,6 +206,8 @@ p {
 .zettel .zettel-body {
   flex: 1 0 300px;
   justify-content: start;
+  max-width: 600px;
+  margin: auto;
 }
 
 .zettel .backlinks-container {
@@ -213,7 +215,14 @@ p {
     padding: 8px;
     /* Take all the space left by zettel-body */
     flex: 0 0;
+
 }
+
+.backlinks-container * {
+    max-width: 600px;
+    margin: auto;
+}
+
 
 .backlink {
     padding-left: 8px;
@@ -228,7 +237,6 @@ p {
     font-size: 17px;
     color: #888;
     border-bottom: 1px dotted black;
-    margin: 0;
     padding: 8px 8px 8px 0;
 }
 
@@ -236,6 +244,12 @@ p {
   /* Relative position required as anchor for tool-tip. */
     position: relative;
 }
+
+.backlinks-container ul {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
 
 .backlink-container:hover .backlink-tooltip {
   /* Make the tool-tip visible when hovering over the list item. */
