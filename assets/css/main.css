@@ -153,6 +153,7 @@ p {
     position: relative;
 }
 
+
 .zettel-grid > .zettel {
     flex: 1 1 auto;
     margin-left: 10px;
@@ -208,6 +209,10 @@ p {
   justify-content: start;
   max-width: 600px;
   margin: auto;
+}
+
+.zettel img {
+  max-width: 600px; 
 }
 
 .zettel .backlinks-container {
